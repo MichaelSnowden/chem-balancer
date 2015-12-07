@@ -21,7 +21,7 @@ public class Balancer {
         System.out.println(answer);
     }
 
-    private static String balance(InputStream inputStream) throws IOException {
+    public static String balance(InputStream inputStream) throws IOException {
         ChemicalEquationLexer l = new ChemicalEquationLexer(new ANTLRInputStream(inputStream));
         ChemicalEquationParser p = new ChemicalEquationParser(new CommonTokenStream(l));
         p.addErrorListener(new BaseErrorListener() {

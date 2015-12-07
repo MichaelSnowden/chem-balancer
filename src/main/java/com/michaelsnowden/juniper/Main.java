@@ -1,5 +1,6 @@
 package com.michaelsnowden.juniper;
 
+import org.apache.tools.ant.filters.StringInputStream;
 import spark.Request;
 import spark.Response;
 import spark.Route;
@@ -19,7 +20,8 @@ public class Main {
         get("/hello", new Route() {
             @Override
             public Object handle(Request req, Response res) throws Exception {
-                return "Hello World";
+                final String equation = req.queryParams("equation");
+                return Balancer.balance(new StringInputStream(equation));
             }
         });
     }
