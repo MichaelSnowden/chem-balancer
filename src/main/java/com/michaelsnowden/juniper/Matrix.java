@@ -5,13 +5,6 @@ import org.apache.commons.math3.fraction.FractionConversionException;
 
 import java.util.LinkedList;
 
-/* Matrix class
- * Handles elementary Matrix operations:
- *	Interchange
- *	Multiply and Add
- *	Scale
- *	Reduced Row Echelon Form
- */
 class Matrix {
     LinkedList<LinkedList<Fraction>> matrix;
     int numRows;
@@ -75,10 +68,10 @@ class Matrix {
         }
     }
 
-    public void RREF() {
+    public void reducedRowEchelonForm() {
         Coordinate pivot = new Coordinate(0, 0);
 
-        int submatrix = 0;
+        int subMatrix = 0;
         for (int x = 0; x < numCols; x++) {
             pivot = new Coordinate(pivot.row, x);
             //Step 1
@@ -101,8 +94,8 @@ class Matrix {
 
             //If necessary, interchange rows to move this entry into the pivot position.
             //move this row to the top of the submatrix
-            if (pivot.row != submatrix) {
-                Interchange(new Coordinate(submatrix, pivot.col), pivot);
+            if (pivot.row != subMatrix) {
+                Interchange(new Coordinate(subMatrix, pivot.col), pivot);
             }
 
             //Force pivot to be 1
@@ -152,7 +145,7 @@ class Matrix {
                 break;
             }
 
-            submatrix++;
+            subMatrix++;
             pivot.row++;
         }
     }

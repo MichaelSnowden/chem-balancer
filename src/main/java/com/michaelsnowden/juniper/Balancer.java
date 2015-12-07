@@ -92,7 +92,7 @@ public class Balancer {
         }
 
         Matrix A = new Matrix(matrix);
-        A.RREF();
+        A.reducedRowEchelonForm();
 
         A.getCoordinate(new Matrix.Coordinate(0, 0));
         double lcm = 1;
@@ -106,7 +106,6 @@ public class Balancer {
         }
         coefficients.add((int) lcm);
         int i = 0;
-        String s = "";
         for (int j = 0; j < leftTerms.size(); j++) {
             final Integer coefficient = coefficients.get(i);
             if (coefficient != 1) {
