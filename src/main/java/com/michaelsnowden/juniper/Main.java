@@ -36,7 +36,7 @@ public class Main {
                 Map<String, String> attributes = new HashMap<>();
                 final String equation = request.queryParams("equation");
                 if (equation != null) {
-                    attributes.put("equation", equation);
+                    attributes.put("equation", Balancer.balance(equation));
                 } else {
                     attributes.put("equation", "");
                 }
