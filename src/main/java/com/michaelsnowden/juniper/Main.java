@@ -23,15 +23,6 @@ public class Main {
         port(Integer.valueOf(System.getenv("PORT")));
         staticFileLocation("/public");
 
-//        get("/balance", new Route() {
-//            @Override
-//            public Object handle(Request req, Response res) throws Exception {
-//                final String equation = req.queryParams("equation");
-//                System.out.println(equation);
-//                return Balancer.balance(new StringInputStream(equation));
-//            }
-//        });
-
         get("/", new TemplateViewRoute() {
             @Override
             public ModelAndView handle(Request request, Response response) {
