@@ -37,6 +37,8 @@ public class Main {
                 final String equation = request.queryParams("equation");
                 if (equation != null) {
                     attributes.put("equation", equation);
+                } else {
+                    attributes.put("equation", "");
                 }
                 return new ModelAndView(attributes, "index.ftl");
             }

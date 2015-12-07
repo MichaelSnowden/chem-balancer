@@ -26,7 +26,7 @@
                 <input type="text" name="equation" class="form-control" placeholder="Enter a chemical equation...">
                 <input type="submit" value="Submit">
             </form>
-            ${message}
+            ${equation}
 
         </div><!-- /.col-lg-6 -->
     </div><!-- /.row -->
