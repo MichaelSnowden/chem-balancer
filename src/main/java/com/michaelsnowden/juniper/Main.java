@@ -21,6 +21,7 @@ public class Main {
             @Override
             public Object handle(Request req, Response res) throws Exception {
                 final String equation = req.queryParams("equation");
+                System.out.println(equation);
                 return Balancer.balance(new StringInputStream(equation));
             }
         });
