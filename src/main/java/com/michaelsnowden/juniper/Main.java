@@ -1,8 +1,13 @@
 package com.michaelsnowden.juniper;
 
-import org.apache.tools.ant.filters.StringInputStream;
-import spark.*;
+import spark.ModelAndView;
+import spark.Request;
+import spark.Response;
+import spark.TemplateViewRoute;
 import spark.template.freemarker.FreeMarkerEngine;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static spark.Spark.*;
 
@@ -16,19 +21,24 @@ public class Main {
         port(Integer.valueOf(System.getenv("PORT")));
         staticFileLocation("/public");
 
-        get("/balance", new Route() {
-            @Override
-            public Object handle(Request req, Response res) throws Exception {
-                final String equation = req.queryParams("equation");
-                System.out.println(equation);
-                return Balancer.balance(new StringInputStream(equation));
-            }
-        });
+//        get("/balance", new Route() {
+//            @Override
+//            public Object handle(Request req, Response res) throws Exception {
+//                final String equation = req.queryParams("equation");
+//                System.out.println(equation);
+//                return Balancer.balance(new StringInputStream(equation));
+//            }
+//        });
 
         get("/", new TemplateViewRoute() {
             @Override
             public ModelAndView handle(Request request, Response response) {
-                return new ModelAndView(null, "index.ftl");
+                Map<String, String> attributes = new HashMap<>();
+                final String equation = request.queryParams("equation");
+                if (equation != null) {
+                    attributes.put("equation", equation);
+                }
+                return new ModelAndView(attributes, "index.ftl");
             }
         }, new FreeMarkerEngine());
     }
