@@ -31,7 +31,7 @@ public class Main {
                 if (equation != null) {
                     try {
                         attributes.put("equation", Balancer.balance(new StringInputStream(equation)));
-                    } catch (IOException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                         attributes.put("equation", e.getMessage());
                     }
