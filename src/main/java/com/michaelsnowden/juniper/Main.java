@@ -1,9 +1,8 @@
 package com.michaelsnowden.juniper;
 
 import org.apache.tools.ant.filters.StringInputStream;
-import spark.Request;
-import spark.Response;
-import spark.Route;
+import spark.*;
+import spark.template.freemarker.FreeMarkerEngine;
 
 import static spark.Spark.*;
 
@@ -17,7 +16,7 @@ public class Main {
         port(Integer.valueOf(System.getenv("PORT")));
         staticFileLocation("/public");
 
-        get("/hello", new Route() {
+        get("/balance", new Route() {
             @Override
             public Object handle(Request req, Response res) throws Exception {
                 final String equation = req.queryParams("equation");
@@ -25,6 +24,13 @@ public class Main {
                 return Balancer.balance(new StringInputStream(equation));
             }
         });
+
+        get("/", new TemplateViewRoute() {
+            @Override
+            public ModelAndView handle(Request request, Response response) {
+                return new ModelAndView(null, "index.ftl");
+            }
+        }, new FreeMarkerEngine());
     }
 
 }
