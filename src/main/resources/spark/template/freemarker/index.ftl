@@ -18,7 +18,7 @@
             crossorigin="anonymous"></script>
     <script>
         $("form").submit(function(e){
-
+            e.preventDefault();
             $.ajax({
 
                 type: "GET",
