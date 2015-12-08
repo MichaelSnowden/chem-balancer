@@ -25,8 +25,7 @@
                     url: "https://juniper-chemistry.herokuapp.com/solve",
                     data: $(this).serialize(),
                     success: function (data) {
-                        console.log(data);
-                        $("#answer").text("data");
+                        $("#answer").text(data);
                     }
 
                 });
