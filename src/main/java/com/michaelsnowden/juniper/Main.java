@@ -26,9 +26,9 @@ public class Main {
             @Override
             public ModelAndView handle(Request request, Response response) {
                 Map<String, String> attributes = new HashMap<>();
-                final String equation = request.queryParams("equation");
-                attributes.put("equation", equation);
+                String equation = request.queryParams("equation");
                 if (equation != null) {
+                    attributes.put("equation", equation);
                     try {
                         attributes.put("balanced", Balancer.balance(new StringInputStream(equation)));
                     } catch (Exception e) {
@@ -36,6 +36,7 @@ public class Main {
                         attributes.put("balanced", "Error: " + e.getCause());
                     }
                 } else {
+                    attributes.put("equation", "");
                     attributes.put("balanced", "");
                 }
                 return new ModelAndView(attributes, "index.ftl");
