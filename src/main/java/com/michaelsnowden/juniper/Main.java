@@ -32,7 +32,7 @@ public class Main {
                         attributes.put("equation", Balancer.balance(new StringInputStream(equation)));
                     } catch (Exception e) {
                         e.printStackTrace();
-                        attributes.put("equation", e.getMessage());
+                        attributes.put("equation", "Error: " + e.getCause());
                     }
                 } else {
                     attributes.put("equation", "");

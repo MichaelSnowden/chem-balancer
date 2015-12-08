@@ -15,12 +15,10 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 public class Balancer {
     public static void main(String[] args) throws IOException {
-        balance(Balancer.class.getResourceAsStream
-                ("/example.equation"));
-        balance(Balancer.class.getResourceAsStream
-                ("/harder-example.equation"));
-        balance(Balancer.class.getResourceAsStream
-                ("/hardest.equation"));
+        System.out.println(balance(Balancer.class.getResourceAsStream
+                ("/example.equation")));
+        System.out.println(balance(Balancer.class.getResourceAsStream
+                ("/hardest.equation")));
 
     }
 
@@ -87,7 +85,7 @@ public class Balancer {
         p.equation();
 
         final int n = terms.get().size();
-        double[][] matrix = new double[Math.max(n, allAtoms.size())][allAtoms.size()];
+        double[][] matrix = new double[Math.max(n, allAtoms.size())][n];
         for (int i = 0; i < n; i++) {
             for (String atom : terms.get().get(i).keySet()) {
                 matrix[allAtoms.get(atom)][i] = terms.get().get(i).get(atom);
