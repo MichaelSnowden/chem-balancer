@@ -16,6 +16,22 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
             integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
             crossorigin="anonymous"></script>
+    <script>
+        $("form").submit(function(e){
+
+            $.ajax({
+
+                type: "GET",
+                data: $(this).serialize(),
+
+                success: function(data){
+                    $("#answer").text("data");
+                }
+
+            });
+
+        });
+    </script>
 </head>
 
 <body>
@@ -25,9 +41,9 @@
         <div class="col-lg-12">
 
             <form>
-                <input type="text" name="equation" class="form-control" placeholder="Enter a chemical equation...">${equation}</input>
+                <input type="text" name="equation" class="form-control" placeholder="Enter a chemical equation...">
             </form>
-            ${balanced}
+            <div class="well" id="answer"></div>
 
         </div><!-- /.col-lg-6 -->
     </div><!-- /.row -->
