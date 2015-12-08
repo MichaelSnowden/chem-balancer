@@ -1,7 +1,7 @@
 grammar ChemicalEquation;
 
-equation: expression WS? '=' WS? expression EOF;
-expression: term (WS '+' WS term)*;
+equation: expression WS? ('=' | '->') WS? expression EOF;
+expression: term (WS? '+' WS? term)*;
 term: component+;
 component: Atom Quantity? | '(' component+ ')' Quantity?;
 

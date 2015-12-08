@@ -7,7 +7,6 @@ import spark.Response;
 import spark.TemplateViewRoute;
 import spark.template.freemarker.FreeMarkerEngine;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 

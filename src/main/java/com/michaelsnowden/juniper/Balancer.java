@@ -15,10 +15,13 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 public class Balancer {
     public static void main(String[] args) throws IOException {
-        String file = "/example.equation";
-        final String answer = balance(Balancer.class.getResourceAsStream
-                (file));
-        System.out.println(answer);
+        balance(Balancer.class.getResourceAsStream
+                ("/example.equation"));
+        balance(Balancer.class.getResourceAsStream
+                ("/harder-example.equation"));
+        balance(Balancer.class.getResourceAsStream
+                ("/hardest.equation"));
+
     }
 
     public static String balance(InputStream inputStream) throws IOException {
@@ -32,7 +35,7 @@ public class Balancer {
             }
         });
 
-        final AtomicReference<ArrayList<Map<String, Integer>>> mapArrayList = new AtomicReference<>();
+        final AtomicReference<ArrayList<Map<String, Integer>>> terms = new AtomicReference<>();
         ArrayList<String> leftTerms = new ArrayList<>();
         ArrayList<String> rightTerms = new ArrayList<>();
         Map<String, Integer> allAtoms = new HashMap<>();
@@ -41,7 +44,7 @@ public class Balancer {
             @Override
             public void exitEquation(ChemicalEquationParser.EquationContext ctx) {
                 super.exitEquation(ctx);
-                mapArrayList.set(new ArrayList<>(ctx.expression(0).term().size() + ctx.expression(1).term()
+                terms.set(new ArrayList<>(ctx.expression(0).term().size() + ctx.expression(1).term()
                         .size()));
                 handleEquation(ctx, 0, 1);
                 handleEquation(ctx, 1, -1);
@@ -58,7 +61,7 @@ public class Balancer {
                     for (ChemicalEquationParser.ComponentContext componentContext : termContext.component()) {
                         handleComponent(componentContext, atoms, multiple);
                     }
-                    mapArrayList.get().add(atoms);
+                    terms.get().add(atoms);
                 }
             }
 
@@ -83,16 +86,18 @@ public class Balancer {
         });
         p.equation();
 
-        final int n = mapArrayList.get().size();
+        final int n = terms.get().size();
         double[][] matrix = new double[n][n];
         for (int i = 0; i < n; i++) {
-            for (String atom : mapArrayList.get().get(i).keySet()) {
-                matrix[allAtoms.get(atom)][i] = mapArrayList.get().get(i).get(atom);
+            for (String atom : terms.get().get(i).keySet()) {
+                matrix[allAtoms.get(atom)][i] = terms.get().get(i).get(atom);
             }
         }
 
         Matrix A = new Matrix(matrix);
+        System.out.println(A);
         A.reducedRowEchelonForm();
+        System.out.println(A);
 
         A.getCoordinate(new Matrix.Coordinate(0, 0));
         double lcm = 1;
@@ -136,3 +141,14 @@ public class Balancer {
         return a * (b / gcd(a, b));
     }
 }
+
+
+// 1 element, 2 terms   S = S8
+// [1 -8]
+// 2 elements, 2 terms  OH = H202
+// [1 -2]
+// [1 -2]
+// 3 elements, 2 terms  CHO = C4H4O4
+// [1 -4]
+// [1 -4]
+// [1 -4]
