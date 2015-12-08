@@ -87,7 +87,7 @@ public class Balancer {
         p.equation();
 
         final int n = terms.get().size();
-        double[][] matrix = new double[n][n];
+        double[][] matrix = new double[Math.max(n, allAtoms.size())][allAtoms.size()];
         for (int i = 0; i < n; i++) {
             for (String atom : terms.get().get(i).keySet()) {
                 matrix[allAtoms.get(atom)][i] = terms.get().get(i).get(atom);
