@@ -18,8 +18,6 @@
         $(function () {
             $("form").submit(function (event) {
                 event.preventDefault();
-
-                console.log($(this).serialize());
                 $.ajax({
                     method: "GET",
                     url: "https://juniper-chemistry.herokuapp.com/solve",
