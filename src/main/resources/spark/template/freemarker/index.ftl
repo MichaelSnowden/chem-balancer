@@ -43,7 +43,7 @@
                     <form>
                         <div class="form-group">
                             <input id="equation" name="equation" type="text" class="form-control"
-                                   placeholder="Search for...">
+                                   placeholder="CH4 + O2 = CO2 + H2O">
                         </div>
                     </form>
                 </div>
