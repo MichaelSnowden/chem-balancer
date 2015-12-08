@@ -27,15 +27,16 @@ public class Main {
             public ModelAndView handle(Request request, Response response) {
                 Map<String, String> attributes = new HashMap<>();
                 final String equation = request.queryParams("equation");
+                attributes.put("equation", equation);
                 if (equation != null) {
                     try {
-                        attributes.put("equation", Balancer.balance(new StringInputStream(equation)));
+                        attributes.put("balanced", Balancer.balance(new StringInputStream(equation)));
                     } catch (Exception e) {
                         e.printStackTrace();
-                        attributes.put("equation", "Error: " + e.getCause());
+                        attributes.put("balanced", "Error: " + e.getCause());
                     }
                 } else {
-                    attributes.put("equation", "");
+                    attributes.put("balanced", "");
                 }
                 return new ModelAndView(attributes, "index.ftl");
             }

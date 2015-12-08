@@ -1,3 +1,5 @@
+<#-- @ftlvariable name="equation" type="java.lang.String" -->
+<#-- @ftlvariable name="balanced" type="java.lang.String" -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,9 +25,9 @@
         <div class="col-lg-12">
 
             <form>
-                <input type="text" name="equation" class="form-control" placeholder="Enter a chemical equation...">
+                <input type="text" name="equation" class="form-control" placeholder="Enter a chemical equation...">${equation}</input>
             </form>
-            ${equation}
+            ${balanced}
 
         </div><!-- /.col-lg-6 -->
     </div><!-- /.row -->
