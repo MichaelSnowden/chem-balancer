@@ -22,7 +22,7 @@
                 console.log($(this).serialize());
                 $.ajax({
                     method: "GET",
-                    url: "https://www.juniper-chemistry.herokuapp.com/solve",
+                    url: "https://juniper-chemistry.herokuapp.com/solve",
                     data: $(this).serialize(),
                     success: function (data) {
                         console.log(data);
