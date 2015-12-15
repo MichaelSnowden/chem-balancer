@@ -31,7 +31,7 @@
                         $("#progress-outer").removeClass("active");
                         $("#progress").html("Done");
                         $("#answer").text(data);
-                    });
+                    }
                 });
             });
         });
