@@ -20,7 +20,7 @@
                 event.preventDefault();
                 $.ajax({
                     method: "GET",
-                    url: "https://juniper-chemistry.herokuapp.com/solve",
+                    url: "/solve",
                     data: $(this).serialize(),
                     success: function (data) {
                         math = document.createElement("math");
