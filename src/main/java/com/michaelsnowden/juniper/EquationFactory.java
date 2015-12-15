@@ -13,16 +13,8 @@ import java.util.concurrent.atomic.AtomicReference;
 /**
  * @author michael.snowden
  */
-public class Balancer {
-    public static void main(String[] args) throws IOException {
-        System.out.println(balance(Balancer.class.getResourceAsStream
-                ("/example.equation")));
-        System.out.println(balance(Balancer.class.getResourceAsStream
-                ("/hardest.equation")));
-
-    }
-
-    public static String balance(InputStream inputStream) throws IOException {
+public class EquationFactory {
+    public Equation getBalancedEquation(InputStream inputStream) throws IOException {
         ChemicalEquationLexer l = new ChemicalEquationLexer(new ANTLRInputStream(inputStream));
         ChemicalEquationParser p = new ChemicalEquationParser(new CommonTokenStream(l));
         p.addErrorListener(new BaseErrorListener() {
@@ -93,9 +85,7 @@ public class Balancer {
         }
 
         Matrix A = new Matrix(matrix);
-        System.out.println(A);
         A.reducedRowEchelonForm();
-        System.out.println(A);
 
         A.getCoordinate(new Matrix.Coordinate(0, 0));
         double lcm = 1;
@@ -123,7 +113,7 @@ public class Balancer {
             }
             ++i;
         }
-        return String.join(" + ", leftTerms) + " = " + String.join(" + ", rightTerms);
+        return new Equation(leftTerms, rightTerms);
     }
 
     private static double gcd(double a, double b) {
@@ -139,14 +129,3 @@ public class Balancer {
         return a * (b / gcd(a, b));
     }
 }
-
-
-// 1 element, 2 terms   S = S8
-// [1 -8]
-// 2 elements, 2 terms  OH = H202
-// [1 -2]
-// [1 -2]
-// 3 elements, 2 terms  CHO = C4H4O4
-// [1 -4]
-// [1 -4]
-// [1 -4]

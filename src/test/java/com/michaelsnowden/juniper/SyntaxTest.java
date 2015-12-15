@@ -1,5 +1,5 @@
-import com.michaelsnowden.juniper.ChemicalEquationLexer;
-import com.michaelsnowden.juniper.ChemicalEquationParser;
+package com.michaelsnowden.juniper;
+
 import org.antlr.v4.runtime.*;
 import org.testng.annotations.Test;
 
@@ -10,13 +10,8 @@ import java.io.IOException;
  */
 public class SyntaxTest {
     @Test
-    public void testExampleEquation() throws Exception {
-        verify("/example.equation");
-    }
-
-    @Test
-    public void testHarderExample() throws Exception {
-        verify("/harder-example.equation");
+    public void testSyntaxOfMethaneCombustion() throws Exception {
+        verify("/methane_combustion.equation");
     }
 
     private void verify(String file) throws IOException {

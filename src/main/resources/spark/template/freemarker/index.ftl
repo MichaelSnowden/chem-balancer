@@ -23,6 +23,38 @@
                     url: "https://juniper-chemistry.herokuapp.com/solve",
                     data: $(this).serialize(),
                     success: function (data) {
+                        math = document.createElement("math");
+
+//                        <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+//                                <mrow>
+//                                <mi>x</mi>
+//                                <mo>=</mo>
+//                                <mfrac>
+//                                <mrow>
+//                                <mo>&#x2212;</mo>
+//                        <mi>b</mi>
+//                        <mo>&#xB1;</mo>
+//                        <msqrt>
+//                        <mrow>
+//                        <msup>
+//                        <mi>b</mi>
+//                        <mn>2</mn>
+//                        </msup>
+//                        <mo>&#x2212;</mo>
+//                        <mn>4</mn>
+//                        <mi>a</mi>
+//                        <mi>c</mi>
+//                        </mrow>
+//                        </msqrt>
+//                        </mrow>
+//                        <mrow>
+//                        <mn>2</mn>
+//                        <mi>a</mi>
+//                        </mrow>
+//                        </mfrac>
+//                        </mrow>
+//                        </math>
+
                         $("#answer").text(data);
                     }
 
@@ -50,7 +82,6 @@
             </div>
             <div class="panel">
                 <div class="col-lg-12" id="answer">
-
                 </div>
             </div>
 
