@@ -1,6 +1,6 @@
 {
-  "name": "Getting Started with Java on Heroku",
-  "description": "A barebones Java app, which can easily be deployed to Heroku.",
+  "name": "Chemical Equation Balancer",
+  "description": "A simple application to balance chemical equations",
   "image": "heroku/java",
   "addons": [ "heroku-postgresql" ]
 }

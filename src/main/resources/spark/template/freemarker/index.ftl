@@ -14,50 +14,25 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
             integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
             crossorigin="anonymous"></script>
+
     <script>
         $(function () {
             $("form").submit(function (event) {
                 event.preventDefault();
-                $.ajax({
-                    method: "GET",
-                    url: "/solve",
-                    data: $(this).serialize(),
-                    success: function (data) {
-                        math = document.createElement("math");
+                $.get("/solve", function(data) {
+                    /* update the progress bar width */
+                    $("#progress").css('width',data+'%');
+                    /* and display the numeric value */
+                    $("#progress").html(data+3'%');
 
-//                        <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-//                                <mrow>
-//                                <mi>x</mi>
-//                                <mo>=</mo>
-//                                <mfrac>
-//                                <mrow>
-//                                <mo>&#x2212;</mo>
-//                        <mi>b</mi>
-//                        <mo>&#xB1;</mo>
-//                        <msqrt>
-//                        <mrow>
-//                        <msup>
-//                        <mi>b</mi>
-//                        <mn>2</mn>
-//                        </msup>
-//                        <mo>&#x2212;</mo>
-//                        <mn>4</mn>
-//                        <mi>a</mi>
-//                        <mi>c</mi>
-//                        </mrow>
-//                        </msqrt>
-//                        </mrow>
-//                        <mrow>
-//                        <mn>2</mn>
-//                        <mi>a</mi>
-//                        </mrow>
-//                        </mfrac>
-//                        </mrow>
-//                        </math>
-
+                    /* test to see if the job has completed */
+                    if(data > 99.999) {
+                        clearInterval(progresspump);
+                        $("#progress-outer").removeClass("active");
+                        $("#progress").html("Done");
                         $("#answer").text(data);
                     }
-
+                    )
                 });
             });
         });
@@ -79,6 +54,9 @@
                         </div>
                     </form>
                 </div>
+            </div>
+            <div class="progress progress-striped active" id="progress-outer">
+                <div class="bar" id="progress"></div>
             </div>
             <div class="panel">
                 <div class="col-lg-12" id="answer">
