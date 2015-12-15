@@ -20,18 +20,13 @@
             $("form").submit(function (event) {
                 event.preventDefault();
                 $.get("/solve", function (data) {
-                    /* update the progress bar width */
                     $("#progress").css('width', data + '%');
-                    /* and display the numeric value */
                     $("#progress").html(data + 3 + '%');
-
-                    /* test to see if the job has completed */
-                    if (data > 99.999) {
-                        clearInterval(progresspump);
-                        $("#progress-outer").removeClass("active");
-                        $("#progress").html("Done");
-                        $("#answer").text(data);
-                    }
+                }, function(data) {
+                    clearInterval(progresspump);
+                    $("#progress-outer").removeClass("active");
+                    $("#progress").html("Done");
+                    $("#answer").text(data);
                 });
             });
         });
