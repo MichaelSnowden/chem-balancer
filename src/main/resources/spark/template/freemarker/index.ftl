@@ -23,7 +23,6 @@
                     $("#progress").css('width', data + '%');
                     $("#progress").html(data + 3 + '%');
                 }, function(data) {
-                    clearInterval(progresspump);
                     $("#progress-outer").removeClass("active");
                     $("#progress").html("Done");
                     $("#answer").text(data);
