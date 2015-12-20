@@ -16,6 +16,13 @@ public class Main {
         port(Integer.valueOf(System.getenv("PORT")));
         staticFileLocation("/public");
 
+        before(new Filter() {
+            @Override
+            public void handle(Request request, Response response) throws Exception {
+                response.header("Access-Control-Allow-Origin", "*");
+            }
+        });
+
         get("/", new TemplateViewRoute() {
             @Override
             public ModelAndView handle(Request request, Response response) {
