@@ -19,7 +19,7 @@
         $(function () {
             $("form").submit(function (event) {
                 event.preventDefault();
-                $.get("/solve", function (data) {
+                $.get("/solve", {"equation": $("#equation").val()}, function (data) {
                     $("#answer").text(data);
                 });
             });
