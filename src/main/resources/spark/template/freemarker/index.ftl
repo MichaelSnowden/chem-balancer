@@ -28,13 +28,13 @@
 </head>
 
 <body>
-<h1>
-    Online Chemical Equation Balancer
-</h1>
-<h2>
-    Enter a chemical equation below and press enter.
-</h2>
 <div class="container" style="margin-top:50px;">
+    <h1>
+        Online Chemical Equation Balancer
+    </h1>
+    <h2>
+        Enter a chemical equation below and press enter.
+    </h2>
     <div class="row">
         <div class="col-lg-12">
 
