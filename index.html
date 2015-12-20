@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Chem Balancer by MichaelSnowden</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Chem Balancer</h1>
+        <p class="header">A simple way to balance chemical equations using antlr4.</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/MichaelSnowden/chem-balancer/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/MichaelSnowden/chem-balancer/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/MichaelSnowden/chem-balancer">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/MichaelSnowden">MichaelSnowden</a></p>
+
+
+      </header>
+      <section>
+        <h3>
+<a id="chem-balancer" class="anchor" href="#chem-balancer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Chem Balancer</h3>
+
+<p>Chem Balancer is just a simple way to balance chemical equations online. There's an online front-end, downloadable source code, as well as a public API.</p>
+
+<h3>
+<a id="accessing-the-online-front-end" class="anchor" href="#accessing-the-online-front-end" aria-hidden="true"><span class="octicon octicon-link"></span></a>Accessing the online front-end</h3>
+
+<p>Just go to <a href="https://chem-balancer.herokuapp.com/">this website</a>.</p>
+
+<h3>
+<a id="using-the-api" class="anchor" href="#using-the-api" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using the API</h3>
+
+<p>Check out the source code of this <a href="https://github.com/MichaelSnowden/chem-balancer/blob/master/src/main/resources/spark/template/freemarker/index.ftl">example client</a>.</p>
+
+<p>Send a <code>GET</code> request to <code>https://chem-balancer.herokuapp.com/solve</code> with the parameter <code>equation</code> set to a string containing a valid equation that follows <a href="https://github.com/MichaelSnowden/chem-balancer/blob/master/src/main/antlr4/com/michaelsnowden/juniper/ChemicalEquation.g4">this grammar</a>.</p>
+
+<pre><code>$.get("https://chem-balancer.herokuapp.com/solve", {"equation": $("#equation").val()}, function (data) {
+    $("#answer").text(data);
+});
+</code></pre>
+
+<h3>
+<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+
+<p>Michael Snowden (<a href="https://github.com/MichaelSnowden" class="user-mention">@MichaelSnowden</a>)</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
