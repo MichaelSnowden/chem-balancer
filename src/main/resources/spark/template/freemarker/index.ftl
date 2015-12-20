@@ -20,11 +20,6 @@
             $("form").submit(function (event) {
                 event.preventDefault();
                 $.get("/solve", function (data) {
-                    $("#progress").css('width', data + '%');
-                    $("#progress").html(data + 3 + '%');
-                }, function(data) {
-                    $("#progress-outer").removeClass("active");
-                    $("#progress").html("Done");
                     $("#answer").text(data);
                 });
             });
@@ -48,14 +43,10 @@
                     </form>
                 </div>
             </div>
-            <div class="progress progress-striped active" id="progress-outer">
-                <div class="bar" id="progress"></div>
-            </div>
             <div class="panel">
                 <div class="col-lg-12" id="answer">
                 </div>
             </div>
-
         </div>
     </div>
 </div>

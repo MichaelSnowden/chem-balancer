@@ -26,15 +26,15 @@ public class EquationFactory {
         });
 
         final AtomicReference<ArrayList<Map<String, Integer>>> terms = new AtomicReference<>();
-        ArrayList<String> leftTerms = new ArrayList<>();
-        ArrayList<String> rightTerms = new ArrayList<>();
-        Map<String, Integer> allAtoms = new HashMap<>();
+        final ArrayList<String> leftTerms = new ArrayList<>();
+        final ArrayList<String> rightTerms = new ArrayList<>();
+        final Map<String, Integer> allAtoms = new HashMap<>();
         p.addParseListener(new ChemicalEquationBaseListener() {
 
             @Override
             public void exitEquation(ChemicalEquationParser.EquationContext ctx) {
                 super.exitEquation(ctx);
-                terms.set(new ArrayList<>(ctx.expression(0).term().size() + ctx.expression(1).term()
+                terms.set(new ArrayList<Map<String, Integer>>(ctx.expression(0).term().size() + ctx.expression(1).term()
                         .size()));
                 handleEquation(ctx, 0, 1);
                 handleEquation(ctx, 1, -1);

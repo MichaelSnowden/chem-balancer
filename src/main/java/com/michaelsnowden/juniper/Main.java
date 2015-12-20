@@ -16,24 +16,33 @@ public class Main {
         port(Integer.valueOf(System.getenv("PORT")));
         staticFileLocation("/public");
 
-        get("/", (request, response) -> {
-            return new ModelAndView(null, "index.ftl");
+        get("/", new TemplateViewRoute() {
+            @Override
+            public ModelAndView handle(Request request, Response response) {
+                return new ModelAndView(null, "index.ftl");
+            }
         }, new FreeMarkerEngine());
 
-        get("/solve", (request, response) -> {
-            String equation = request.queryParams("equation");
-            if (equation != null) {
-                return new EquationFactory().getBalancedEquation(new StringInputStream(equation)).asPlainText();
+        get("/solve", new Route() {
+            @Override
+            public Object handle(Request request, Response response) throws Exception {
+                String equation = request.queryParams("equation");
+                if (equation != null) {
+                    return new EquationFactory().getBalancedEquation(new StringInputStream(equation)).asPlainText();
+                }
+                return "";
             }
-            return "";
         });
 
-        get("/solve-json", (request, response) -> {
-            String equation = request.queryParams("equation");
-            if (equation != null) {
-                return new EquationFactory().getBalancedEquation(new StringInputStream(equation)).asPlainText();
+        get("/solve-json", new Route() {
+            @Override
+            public Object handle(Request request, Response response) throws Exception {
+                String equation = request.queryParams("equation");
+                if (equation != null) {
+                    return new EquationFactory().getBalancedEquation(new StringInputStream(equation)).asPlainText();
+                }
+                return "";
             }
-            return "";
         });
     }
 }
