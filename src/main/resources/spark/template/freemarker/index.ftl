@@ -15,12 +15,26 @@
             integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
             crossorigin="anonymous"></script>
 
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+    <script type="text/javascript" async
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+    </script>
+
     <script>
+        function prettify(text) {
+            return text.replace(/([A-Za-z])(\d+)/g, "$1_$2");
+        }
+
         $(function () {
             $("form").submit(function (event) {
                 event.preventDefault();
-                $.get("https://chem-balancer.herokuapp.com/solve", {"equation": $("#equation").val()}, function (data) {
-                    $("#answer").text(data);
+                var equation = $("#equation").val();
+                $.get("https://chem-balancer.herokuapp.com/solve", {"equation": equation}, function (answer) {
+                    $("#answer").text("$$" + prettify(equation) + " \\rightarrow " + prettify(answer) + "$$");
+                    MathJax.Hub.Typeset()
                 });
             });
         });
@@ -44,20 +58,15 @@
                 <div class="col-lg-12">
                     <form>
                         <div class="form-group">
-                            <div class="col-sm-5">
-                                <label for="equation" class="sr-only"></label>
-                                <input id="equation" name="equation" type="text" class="form-control"
-                                       placeholder="CH4 + O2 = CO2 + H2O">
-                            </div>
-                            <div class="col-sm-2 text-center">
-                                =
-                            </div>
-                            <div class="controls">
-                                <p id="answer" class="form-control-static"></p>
-                            </div>
+                            <label for="equation" class="sr-only"></label>
+                            <input id="equation" name="equation" type="text" class="form-control"
+                                   placeholder="CH4 + O2 = CO2 + H2O">
                         </div>
                     </form>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12" id="answer"></div>
             </div>
         </div>
     </div>
