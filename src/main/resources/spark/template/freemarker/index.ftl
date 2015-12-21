@@ -33,7 +33,7 @@
                 event.preventDefault();
                 var equation = $("#equation").val();
                 $.get("https://chem-balancer.herokuapp.com/solve", {"equation": equation}, function (answer) {
-                    $("#answer").text("$$" + prettify(equation) + " \\rightarrow " + prettify(answer) + "$$");
+                    $("#answer").text("$$" + prettify(equation) + " \\xrightarrow{Balance} " + prettify(answer) + "$$");
                     MathJax.Hub.Typeset()
                 });
             });
