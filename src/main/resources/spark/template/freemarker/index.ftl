@@ -29,12 +29,13 @@
 
 <body>
 <div class="container" style="margin-top:50px;">
-    <h1>
-        Online Chemical Equation Balancer
-    </h1>
-    <h2>
-        Enter a chemical equation below and press enter.
-    </h2>
+    <div class="page-header">
+        <h1> Online Chemical Equation Balancer
+            <br/>
+            <small> Enter a chemical equation below and press enter.</small>
+        </h1>
+    </div>
+
     <div class="row">
         <div class="col-lg-12">
 
@@ -43,19 +44,30 @@
                 <div class="col-lg-12">
                     <form>
                         <div class="form-group">
-                            <input id="equation" name="equation" type="text" class="form-control"
-                                   placeholder="CH4 + O2 = CO2 + H2O">
+                            <div class="col-sm-5">
+                                <label for="equation" class="sr-only"></label>
+                                <input id="equation" name="equation" type="text" class="form-control"
+                                       placeholder="CH4 + O2 = CO2 + H2O">
+                            </div>
+                            <div class="col-sm-2 text-center">
+                                =
+                            </div>
+                            <div class="controls">
+                                <p id="answer" class="form-control-static"></p>
+                            </div>
                         </div>
                     </form>
-                </div>
-            </div>
-            <div class="panel">
-                <div class="col-lg-12" id="answer">
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">Created by <a href="http://michaelsnowden.github.io/">Michael Snowden</a></p>
+    </div>
+</footer>
 
 </body>
 </html>
