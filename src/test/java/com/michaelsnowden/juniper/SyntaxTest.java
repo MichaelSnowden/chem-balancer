@@ -14,6 +14,11 @@ public class SyntaxTest {
         verify("/methane_combustion.equation");
     }
 
+    @Test
+    public void testSyntaxOfEquationWithUnnecessaryTermCoefficients() throws Exception {
+        verify("/unnecessary_term_coefficients.equation");
+    }
+
     private void verify(String file) throws IOException {
         ChemicalEquationLexer l = new ChemicalEquationLexer(new ANTLRInputStream(getClass().getResourceAsStream(file)));
         ChemicalEquationParser p = new ChemicalEquationParser(new CommonTokenStream(l));
